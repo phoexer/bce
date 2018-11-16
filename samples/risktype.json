@@ -1,0 +1,100 @@
+{
+	"name": "Auto-Insurance",
+	"desc": "Risk Type for Auto Insurence",
+	"tooltip": "This Risk type is used for Car Insurance",
+	"active": true,
+	"fields": [
+		{
+			"name":"vin",
+			"label":"Vin Number",
+			"tooltip": "",
+			"type": "TEXT",
+			"visible": true,
+			"hidden":false,
+			"required": true,
+			"options":[]
+		},
+		{
+			"name":"desc",
+			"label":"Short Description",
+			"tooltip": "",
+			"type": "TEXTAREA",
+			"visible": true,
+			"hidden":false,
+			"required": true,
+			"options":[]
+		},
+		{
+			"name":"purchase_date",
+			"label":"Purchase Date",
+			"tooltip": "",
+			"type": "DATE",
+			"visible": true,
+			"hidden":false,
+			"required": true,
+			"options":[]
+		},
+		{
+			"name":"purchase_price",
+			"label":"Purchase Price",
+			"tooltip": "",
+			"type": "CURRENCY",
+			"visible": true,
+			"hidden":false,
+			"required": true,
+			"options":[]
+		},
+		{
+			"name":"millage",
+			"label":"Millage",
+			"tooltip": "",
+			"type": "NUMBER",
+			"visible": true,
+			"hidden":false,
+			"required": true,
+			"options":[]
+		},
+		{
+			"name":"steering",
+			"label":"Steering",
+			"tooltip": "",
+			"type": "RADIO",
+			"visible": true,
+			"hidden":false,
+			"required": true,
+			"options":[
+				{
+					"key":"left",
+					"value":"Left Hand Drive"
+				},
+				{
+					"key":"right",
+					"value":"Right Hand Drive"
+				}
+			]
+		},
+		{
+			"name":"type",
+			"label":"Type",
+			"tooltip": "",
+			"type": "DROPDOWN",
+			"visible": true,
+			"hidden":false,
+			"required": true,
+			"options":[
+				{
+					"key":"sedan",
+					"value":"Sedan"
+				},
+				{
+					"key":"coupe",
+					"value":"Coupe"
+				},
+				{
+					"key":"suv",
+					"value":"SUV"
+				},
+			]
+		},
+	]
+}
