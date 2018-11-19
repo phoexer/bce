@@ -8,3 +8,5 @@
 *.sublime-workspace
 /bce-server/ve
 node_modules/
+/bce-server/zappa_settings.json
+/bce-server/bceapp/settings.py
