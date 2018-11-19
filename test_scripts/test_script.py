@@ -47,13 +47,16 @@ r = createObject(token, data_err)
 printeverything(r)
 
 
-r = getObject(token, 40)
+r = getObject(token, 50)
 printeverything(r)
+edit_data = None
 edit_data = r.json()
 
-r = updateObject(token, edit_data)
+r = updateObject(token, 50, edit_data)
 printeverything(r)
 
 
-r = deleteObject(token, 39)
-printeverything(r)
+for i in range(40,49):
+    print(i)
+    r = deleteObject(token, i)
+    printeverything(r)

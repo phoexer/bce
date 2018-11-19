@@ -1,6 +1,12 @@
 from rest_framework import serializers
-from bce.models import RiskType, FieldType, FieldOption
+from bce.models import RiskType, FieldType, FieldOption, Risk
 from django.contrib.auth.models import User
+
+
+class RiskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Risk
+        fields = ('id', 'name', 'data')
 
 
 class FieldOptionSerializer(serializers.ModelSerializer):

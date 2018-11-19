@@ -49,7 +49,7 @@ def createObject(token, data):
     
     headers = {
             "Content-Type": "application/json",
-            "Authorization": "token " + token
+            "Authorization": "JWT " + token
     }
     r = requests.post(url, headers = headers, data= json.dumps(data))
     #res = r.json()
@@ -60,7 +60,7 @@ def updateObject(token, objectId, data):
     
     headers = {
             "Content-Type": "application/json",
-            "Authorization": "token " + token
+            "Authorization": "JWT " + token
     }
     r = requests.put(url, headers = headers, data= json.dumps(data))
     #res = r.json()
@@ -71,7 +71,7 @@ def listObjects(token):
     
     headers = {
             "Content-Type": "application/json",
-            "Authorization": "token " + token
+            "Authorization": "JWT " + token
     }
     r = requests.get(url, headers = headers)
     #res = r.json()
@@ -82,7 +82,7 @@ def getObject(token, objectId):
     
     headers = {
             "Content-Type": "application/json",
-            "Authorization": "token " + token
+            "Authorization": "JWT " + token
     }
     r = requests.get(url, headers = headers)
     #res = r.json()
@@ -93,7 +93,7 @@ def deleteObject(token, objectId):
     
     headers = {
             "Content-Type": "application/json",
-            "Authorization": "token " + token
+            "Authorization": "JWT " + token
     }
     r = requests.delete(url, headers = headers)
     #res = r.json()

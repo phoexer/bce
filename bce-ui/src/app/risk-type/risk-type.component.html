@@ -1,0 +1,111 @@
+<div class="row">
+  <div class="col-md-12">
+    <h2>Create Risk Type</h2>
+  </div>
+  <div class="col-md-12">
+    <form [formGroup]="riskTypeForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input class="form-control" required name="name" id="name" formControlName="name" >
+      </div>
+      <div class="form-group">
+        <label for="label">Label</label>
+        <input class="form-control" required name="label" id="label" formControlName="label" >
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" name="description" formControlName="description" ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="tooltip">Tool Tips</label>
+        <input class="form-control" name="tooltip" id="tooltip" formControlName="tooltip" >
+      </div>
+      <div class="form-group">
+        <label class="form-control" for="active">
+          <input name="active" id="active" formControlName="active" [(ngModel)]="active" type="checkbox" >
+          Active
+        </label>
+      </div>
+
+      <section formArrayName="fields">
+        <h3>Field</h3>
+        <div class="row">
+          <div class="alert alert-success col-md-3 col-sm-6" *ngFor="let field of riskTypeForm.controls.fields.controls; index as i">
+            <div formGroupName="{{i}}">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input class="form-control" required id="name" name="name" formControlName="name" >
+              </div>
+              <div class="form-group">
+                <label for="label">Label</label>
+                <input class="form-control" required name="label" id="label" formControlName="label" >
+              </div>
+              <div class="form-group">
+                <label for="tooltip">Tool Tips</label>
+                <input class="form-control" name="tooltip" id="tooltip" formControlName="tooltip" >
+              </div>
+              <div class="form-group">
+                <label for="type">Field Type</label>
+                <select class="form-control" name="type" id="type" formControlName="type" (change)="onChange(field, $event.target.value)">
+                  <option value="TEXT">Text Field</option>
+                  <option value="TEXTAREA">Text Area</option>
+                  <option value="EMAIL">Email Address</option>
+                  <option value="DATE">Date</option>
+                  <option value="CURRENCY">Currency</option>
+                  <option value="NUMBER">Number</option>
+                  <!--<option value="INTEGER">Natural Number</option>-->
+                  <!--<option value="FLOAT">Real Number</option>-->
+                  <option value="RADIO">Radio Buttons</option>
+                  <option value="DROPDOWN">Dropdown</option>
+                </select>
+              </div>
+              <div *ngIf="field.controls.options.controls.length > 0" formArrayName="options">
+                <table class="table">
+                  <tr *ngFor="let option of field.controls.options.controls; index as j">
+                    <div formGroupName="{{j}}">
+                      <td><label for="choice">Choice</label></td>
+                      <td>
+                        <input class="form-control" name="choice" id="choice" formControlName="choice" >
+                      </td>
+                      <td><label for="label">Label</label></td>
+                      <td>
+                        <input class="form-control" name="label" id="label" formControlName="label" >
+                      </td>
+                      <td><button class="btn btn-default" type="button" title="Remove Option" (click)="onRemoveOption(field, j)">Remove Option</button></td>
+                    </div>
+                  </tr>
+                  <tr>
+                    <td><button class="btn btn-primary" type="button" title="Add Option" (click)="onAddOption(field)">Add Option</button></td>
+                  </tr>
+                </table>
+              </div>
+              <!--<div class="form-group">-->
+              <!--<label class="form-control" for="visible">-->
+              <!--<input required name="visible" id="visible" formControlName="visible" type="checkbox"-->
+              <!--ng-true-value="true" ng-false-value="false" checked>-->
+              <!--Visible-->
+              <!--</label>-->
+              <!--</div>-->
+              <!--<div class="form-group">-->
+              <!--<label class="form-control" for="hidden">-->
+              <!--<input required name="hidden" id="hidden" formControlName="hidden" type="checkbox" checked="false">-->
+              <!--Hidden-->
+              <!--</label>-->
+              <!--</div>-->
+              <div class="form-group">
+                <label class="form-control" for="required">
+                  <input required name="required" id="required" formControlName="required" type="checkbox" checked="false">
+                  Required
+                </label>
+              </div>
+            </div>
+            <button class="btn btn-default" type="button" title="Remove Field" (click)="onRemoveField(i)">Remove Field</button>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" type="button" title="Add Field" (click)="onAddField()">Add Field</button>
+      </section>
+      <button class="btn btn-primary" type="button"  (click)="onSubmit()">Save</button>
+    </form>
+  </div>
+</div>

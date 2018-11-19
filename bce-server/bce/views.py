@@ -3,10 +3,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import Http404
 from rest_framework import status
-from bce.models import RiskType, FieldType, FieldOption
+from bce.models import RiskType, FieldType, FieldOption, Risk
 from rest_framework.parsers import JSONParser
 from rest_framework import generics
-from bce.serializers import RiskTypeSerializer, FieldTypeSerializer, FieldOptionSerializer
+from bce.serializers import RiskTypeSerializer, FieldTypeSerializer, FieldOptionSerializer, RiskSerializer
 from rest_framework import permissions
 from bce.permissions import IsOwnerOrReadOnly
 from django.db import transaction
@@ -15,12 +15,13 @@ from django.db import transaction
 class ApiRoot(APIView):
     def get(self, request, format=None):
         return Response({
-            'message': 'Hello World'
+            'message': 'you found the api, now what?'
         })
 
 
 class RiskTypeList(APIView):
     def get(self, request, formart=None):
+        # permission_classes = (permissions.IsAuthenticated, IsOwnerOrReadOnly)
         serializer = RiskTypeSerializer(RiskType.objects.all(), many=True)
         return Response(serializer.data)
 
@@ -129,3 +130,15 @@ class RiskTypeDetail(APIView):
         risk_type = self.get_risk_type(pk)
         risk_type.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class RiskList(generics.ListCreateAPIView):
+    permission_classes = (permissions.IsAuthenticated, IsOwnerOrReadOnly)
+    queryset = Risk.objects.all()
+    serializer_class = RiskSerializer
+
+
+class RiskDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (permissions.IsAuthenticated, IsOwnerOrReadOnly)
+    queryset = Risk.objects.all()
+    serializer_class = RiskSerializer

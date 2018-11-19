@@ -1,12 +1,16 @@
 from django.db import models
 
 
+class Risk(models.Model):
+    name = models.CharField(max_length=100)
+    data = models.CharField(max_length=102400)
+
 class RiskType(models.Model):
     name = models.CharField(max_length=100)
     label = models.CharField(max_length=100, blank=True, default='')
     description = models.TextField(blank=True)
     tooltip = models.TextField(blank=True)
-    active = models.BooleanField(default=True)
+    active = models.BooleanField(default=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey('auth.User', related_name='risk_types', on_delete=models.CASCADE)
 
@@ -23,6 +27,7 @@ class FieldType(models.Model):
     FIELD_TYPES = (
         ('TEXT', 'Text Field'),
         ('TEXTAREA', 'Text Area'),
+        ('EMAIL', 'Email Address'),
         ('DATE', 'Date'),
         ('DATETIME', 'Date and Time'),
         ('NUMBER', 'Numbers'),
@@ -32,9 +37,9 @@ class FieldType(models.Model):
     )
     type = models.CharField(max_length=10, choices=FIELD_TYPES, default='TEXT')
     
-    visible = models.BooleanField(default=True)
-    hidden = models.BooleanField(default=False)
-    required = models.BooleanField(default=False)
+    visible = models.BooleanField(default=True, blank=True)
+    hidden = models.BooleanField(default=False, blank=True)
+    required = models.BooleanField(default=False, blank=True)
 
 
 class FieldOption(models.Model):
