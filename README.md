@@ -9,7 +9,7 @@ The app itself is live and can be accessed from the urls in the tl;dr
 1. This file
 2. Links to the live app are [Listed Here](#ui)
 3. Model file can be [found here](bce-server/bce/models.py) and [here](doc/models.py)
-4. The entity diagram can be [found here](doc/images/Entities.png), [here](#entities) and [here](doc/Entities.png)
+4. The entity diagram can be [found here](doc/Entities.png), and  [here](#entities)
 5. Backend Api link can is [shown here](#server) 
 6. Can be checked [here](bce-server/bce/views.py)
 7. Live UI app is linked [here](#ui) along with the details to log in and test 
@@ -109,7 +109,7 @@ The Risk Model receives the name, type and data for a new Risk and saves it to d
 
 
 ### <a name="entities"></a>Entities 
-![Image](doc/images/entities.png "icon")
+![Image](doc/Entities.png "Entities")
 
 ## Deploying
 
