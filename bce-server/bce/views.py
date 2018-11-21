@@ -10,13 +10,21 @@ from bce.serializers import RiskTypeSerializer, FieldTypeSerializer, FieldOption
 from rest_framework import permissions
 from bce.permissions import IsOwnerOrReadOnly
 from django.db import transaction
+from django.template import loader
+from django.http import HttpResponse
 
 
-class ApiRoot(APIView):
-    def get(self, request, format=None):
-        return Response({
-            'message': 'you found the api, now what?'
-        })
+# class ApiRoot(APIView):
+#     def get(self, request, format=None):
+#         return Response({
+#             'message': 'you found the api, now what?'
+#         })
+
+def index(request):
+    # template = loader.get_template('home.html')
+    # context = {}
+    # return HttpResponse(template.render(context, request))
+    return render(request, 'home.html')
 
 
 class RiskTypeList(APIView):

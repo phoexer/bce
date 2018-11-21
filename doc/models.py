@@ -41,13 +41,8 @@ class FieldType(models.Model):
     hidden = models.BooleanField(default=False, blank=True)
     required = models.BooleanField(default=False, blank=True)
 
-    class Meta:
-        ordering = ('id',)
 
 class FieldOption(models.Model):
     choice = models.CharField(max_length=20)
     label = models.CharField(max_length=100)
     field_type = models.ForeignKey('FieldType', related_name='options', on_delete=models.CASCADE)
-
-    class Meta:
-        ordering = ('choice',)

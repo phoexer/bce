@@ -5,8 +5,7 @@ from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify
 from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
-    path('', views.ApiRoot.as_view()),
-    # path('api-token-auth/', CustomAuthToken.as_view()),
+
     path('api-token-auth/', obtain_jwt_token),
     path('api-token-refresh/', refresh_jwt_token),
     path('api-token-verify/', verify_jwt_token),
@@ -22,6 +21,8 @@ urlpatterns = [
     path('risks/<int:pk>/',
          views.RiskDetail.as_view(),
          name='risk-detail'),
+    # path('', views.index, name='index'),
+    # path(r'^.*', views.index, name='index'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

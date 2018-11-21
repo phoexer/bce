@@ -1,5 +1,8 @@
 django
 djangorestframework
-psycopg2
-django-s3-storage-0.12.4
 djangorestframework-jwt
+psycopg2
+django-s3-storage
+django-cors-headers
+django-webpack-loader
+zappa

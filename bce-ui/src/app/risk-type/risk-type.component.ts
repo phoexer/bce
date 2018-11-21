@@ -84,11 +84,12 @@ export class RiskTypeComponent implements OnInit {
   }
 
   onSubmit() {
+    window.scroll(0,0);
     this.submitted = true;
-    console.log('Submitted');
-    console.log(this.riskTypeForm);
-    console.log(this.riskTypeForm.value);
-    console.log(JSON.stringify(this.riskTypeForm.value));
+    // console.log('Submitted');
+    // console.log(this.riskTypeForm);
+    // console.log(this.riskTypeForm.value);
+    // console.log(JSON.stringify(this.riskTypeForm.value));
     let body; // = this.riskTypeForm.value; // JSON.stringify(this.riskTypeForm.value);
 
     let bodyTemp = JSON.stringify(this.riskTypeForm.value, function (key, value) {
@@ -101,18 +102,23 @@ export class RiskTypeComponent implements OnInit {
 
     body = JSON.parse(bodyTemp);
 
+    try{
+      this.riskTypeService.createRiskTypes(body).subscribe(data => {
 
-    this.riskTypeService.createRiskTypes(body).subscribe(data => {
+          this.alertService.success('Risk Type Created', true);
+          this.router.navigate(['/']);
+        },
+        (err: HttpErrorResponse) => {
 
-        this.alertService.success('Risk Type Created', true);
-        this.router.navigate(['/']);
-      },
-      (err: HttpErrorResponse) => {
-        if (err.error instanceof Error) {
-          this.alertService.error('Client-side error occured.');
-        } else {
-          this.alertService.error('Server-side error occured.');
-        }
-      });
+          for (let key in err.error) {
+            // console.log("Field \"" + key + "\": " + err.error[key]);
+            this.alertService.error(key + ": " + err.error[key], true);
+          }
+        });
+    }catch (e) {
+      // console.log(e.toString());
+      this.alertService.error(e.message, true);
+    }
+
   }
 }

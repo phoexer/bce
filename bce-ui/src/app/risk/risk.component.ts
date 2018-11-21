@@ -26,8 +26,8 @@ export class RiskComponent implements OnInit {
   ngOnInit() {
     this.riskTypeService.findAllRiskTypes().subscribe(data => {
         this.riskTypes = data;
-        console.log('Here Be Data');
-        console.log(data);
+        // console.log('Here Be Data');
+        // console.log(data);
         // return data;
       },
       (err: HttpErrorResponse) => {
@@ -42,8 +42,8 @@ export class RiskComponent implements OnInit {
   onChange(id) {
     // objArray.find(obj => obj.id == 3);
     this.selectedRiskType =  this.riskTypes.filter(x => x.id === parseInt(id))[0];
-    console.log(id);
-    console.log(this.selectedRiskType);
+    // console.log(id);
+    // console.log(this.selectedRiskType);
     // console.log(this.selectedRiskType.name);
     // this.selectedRiskType = newRiskType;
 
@@ -51,7 +51,7 @@ export class RiskComponent implements OnInit {
     // this.riskForm = new FormArray({});
 
     for (let field of this.selectedRiskType.fields) {
-      console.log(field.name);
+      //console.log(field.name);
       this.riskForm.addControl(field.name, new FormControl());
     }
   }

@@ -21,18 +21,19 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'secret key'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
+ADMIN_ENABLED = False
 
-ALLOWED_HOSTS = ['localhost:8080', 'localhost']
+ALLOWED_HOSTS = ['jmeqhog3qj.execute-api.us-east-2.amazonaws.com']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -43,6 +44,8 @@ INSTALLED_APPS = [
     'bce.apps.BceConfig',
     'django_s3_storage',
     'corsheaders',
+    'webpack_loader',
+    # 'core',
 ]
 
 MIDDLEWARE = [
@@ -62,7 +65,7 @@ ROOT_URLCONF = 'bceapp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,10 +87,10 @@ WSGI_APPLICATION = 'bceapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db.user',
-        'USER': 'db.user',
-        'PASSWORD': 'password',
-        'HOST': 'amazon host',
+        'NAME': 'bce',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
         'PORT': '5432',
     }
 }
@@ -130,6 +133,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+# os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT =
+# '/static/'
+# os.path.join(BASE_DIR, "static/")
+STATICFILES_DIRS = ("E:\\git\\bce\\bce-ui\\dist", )
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
@@ -147,9 +156,12 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    )
 }
 
-YOUR_S3_BUCKET = "zappa-bce-static"
+YOUR_S3_BUCKET = ""
 
 STATICFILES_STORAGE = "django_s3_storage.storage.StaticS3Storage"
 AWS_S3_BUCKET_NAME_STATIC = YOUR_S3_BUCKET
@@ -159,14 +171,33 @@ AWS_S3_BUCKET_NAME_STATIC = YOUR_S3_BUCKET
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % YOUR_S3_BUCKET
 STATIC_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
 
+# The AWS region to connect to.
+AWS_REGION = "us-east-2"
+
+# The AWS access key to use.
+AWS_ACCESS_KEY_ID = ""
+
+# The AWS secret access key to use.
+AWS_SECRET_ACCESS_KEY = ""
+
 # OR...if you create a fancy custom domain for your static files use:
-#AWS_S3_PUBLIC_URL_STATIC = "https://static.zappaguide.com/"
+# AWS_S3_PUBLIC_URL_STATIC = "https://bce.mmusangeya.com"
 
 CORS_ORIGIN_WHITELIST = (
-    'localhost:8080',
-    'localhost'
+    # 'localhost:8080',
+    # 'localhost',
+    'zappa-bce-static.s3-website.us-east-2.amazonaws.com',
+    'bce.musangeya.com',
+    'bce.mmusangeya.com',
 )
 
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=43200),
+}
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': '',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+    }
 }
