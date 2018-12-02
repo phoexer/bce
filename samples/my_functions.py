@@ -11,6 +11,9 @@ import random
 import string
 from json import JSONDecodeError
 
+
+baseUrl = "http://127.0.0.1:8000/api"
+
 def printeverything(r):
     print("Status:\t", r.status_code)
     try:
@@ -21,12 +24,14 @@ def printeverything(r):
         
     
 def login(username,password):
-    baseUrl = "http://localhost:8000"
+    
     loginUrl = baseUrl + '/api-token-auth/'
     
     #
     headers = {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            'X-CSRFToken': '*',
+            'X-Frame-Options': '*'
     }
     #Login with new user
     payload = {
@@ -45,7 +50,7 @@ def login(username,password):
 
 
 def createObject(token, data):
-    url = "http://localhost:8000/risk-types/"
+    url = baseUrl + "/risk-types/"
     
     headers = {
             "Content-Type": "application/json",
@@ -56,7 +61,7 @@ def createObject(token, data):
     return r
 
 def updateObject(token, objectId, data):
-    url = "http://localhost:8000/risk-types/" + str(objectId) + '/'
+    url = baseUrl + "/risk-types/" + str(objectId) + '/'
     
     headers = {
             "Content-Type": "application/json",
@@ -67,7 +72,7 @@ def updateObject(token, objectId, data):
     return r
 
 def listObjects(token):
-    url = "http://localhost:8000/risk-types/"
+    url = baseUrl + "/risk-types/"
     
     headers = {
             "Content-Type": "application/json",
@@ -78,7 +83,7 @@ def listObjects(token):
     return r
 
 def getObject(token, objectId):
-    url = "http://localhost:8000/risk-types/" + str(objectId) + '/'
+    url = baseUrl + "/risk-types/" + str(objectId) + '/'
     
     headers = {
             "Content-Type": "application/json",
@@ -89,7 +94,7 @@ def getObject(token, objectId):
     return r 
 
 def deleteObject(token, objectId):
-    url = "http://localhost:8000/risk-types/" + str(objectId) + '/'
+    url = baseUrl + "/risk-types/" + str(objectId) + '/'
     
     headers = {
             "Content-Type": "application/json",

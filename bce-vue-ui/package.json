@@ -9,8 +9,11 @@
   },
   "dependencies": {
     "vue": "^2.5.17",
-    "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vue-async-computed": "^3.5.0",
+    "vue-config": "^1.0.0",
+    "vue-material": "latest",
+    "vue-router": "latest",
+    "vuex": "latest"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.2.0",

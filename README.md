@@ -21,12 +21,24 @@ The app itself is live and can be accessed from the urls in the tl;dr
      
      
 ## <a name="ui"></a>UI
-The following links will both take you to the app's front end. The only difference 
-is one is hosted on my one of my linodes, while the other runs on Amazon s3.
-They both access the same backend so will both contain the same data.
+The following link points to the app's frontend. The frontend is hosted on my one of my linodes and 
+accesses the backend server which runs on Amazon Lambda.
 
 * [bce.musangeya.com](https://bce.musangeya.com)
-* [Amazon s3](http://zappa-bce-static.s3-website.us-east-2.amazonaws.com)
+
+I originally wrote the UI using Angular because that was the framework I was most comfortable with.
+However after finishing, I decided to see what I could learn about Vue.js because it was mentioned as 
+an option in the requirement document.
+
+One thing led to another, and I now have the UI written in Vue.js as well. The link above leads 
+to the Vue.js version of the app.
+
+The old Angular app can be viewed using the link below
+
+*  [bce-ng.musangeya.com](https://bce-ng.musangeya.com)
+
+Both Apps are pretty much identical and access the same backend. The code for both is in the repository,
+i.e. [bce-vue-ui](bce-vue-ui) for the Vue.js app and [bce-angular-ui](bce-angular-ui) for the angular app.
 
 ## <a name="server"></a>Api
 The Api can be accessed  at
