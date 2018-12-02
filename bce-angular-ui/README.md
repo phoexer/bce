@@ -1,4 +1,9 @@
-# BceUi
+Bce Angular Ui
+==============
+
+Last years model. I wrote this first then rewrote it in in Vue. There is nothing wrong with this version,
+it works fine I just chose to switch it out. 
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
 

@@ -1,31 +1,56 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="container">
+        <Header></Header>
+        <div class="row">
+            <div class="col-sm-12">
+                <div v-if="alert.message" :class="`alert ${alert.type}`">
+                    {{alert.message}}
+                </div>
+                <router-view></router-view>
+            </div>
+        </div>
+        <hr />
+        <Footer></Footer>
     </div>
-    <router-view/>
-  </div>
 </template>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
+<script>
+    import Header from '@/views/Header.vue';
+    import Footer from '@/views/Footer.vue';
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+    export default {
+        name: 'app',
+        components: {
+            Header,
+            Footer,
+        },
+        computed: {
+            alert() {
+                return this.$store.state.alert
+            }
+        },
+        watch: {
+            $route(to, from) {
+                // clear alert on location change
+                //console.log(to);
+                // console.log(from.toString());
+                if (to.name != 'home'){
+                    // Clear alerts only when not going home
+                    this.$store.dispatch('alert/clear');
+                }
+            }
+        }
+    };
+</script>
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+<!--<template>-->
+    <!--<div id="app">-->
+        <!--<div id="nav">-->
+            <!--<router-link to="/">Home</router-link>-->
+            <!--|-->
+            <!--<router-link to="/about">About</router-link>-->
+        <!--</div>-->
+        <!--<router-view/>-->
+    <!--</div>-->
+<!--</template>-->
+

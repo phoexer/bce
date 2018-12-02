@@ -1,4 +1,10 @@
-# bce-vue-ui
+BCE-Vue-ui
+==========
+
+This is the UI app written in Vue.js. 
+I wrote this ui after I had finished the angular version. It is identical to said version,
+aside from technology used and uses the same backend.
+
 
 ## Project setup
 ```

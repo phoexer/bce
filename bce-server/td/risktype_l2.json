@@ -1,0 +1,19 @@
+{
+	"name": "Auto-Insurance",
+	"label": "Sample Label",
+	"description": "Risk Type for Auto Insurence",
+	"tooltip": "This Risk type is used for Car Insurance",
+	"active": true,
+	"fields": [
+		{
+			"name":"vin",
+			"label":"Vin Number",
+			"tooltip": "",
+			"type": "TEXT",
+			"visible": true,
+			"hidden":false,
+			"required": true,
+			"options":[]
+		}
+	]
+}

@@ -10,6 +10,11 @@ Created on Fri Nov 16 11:48:16 2018
 import json
 from my_functions import login, listObjects, printeverything, createObject, getObject, deleteObject, updateObject
 
+payload = {
+            "username": 'michael',
+            "password": 'password123'
+}
+
 token = login('michael','password123')
 
 r = listObjects(token)
