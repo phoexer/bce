@@ -15,7 +15,7 @@
             </div>
         </div>
 
-        <div class="row" v-if="selected">
+        <div class="row" v-if="selected && selected.name">
             <div class="col-sm-12">
                 <form @submit.prevent="submit">
                     <h2>Creating new {{selected.name}} risk</h2>
@@ -94,19 +94,17 @@
         name: "Risk",
         data() {
             return {
-                riskTypes: [],
+                riskTypes: [{},{}],
                 selected: null,
                 models: {},
             };
 
         },
         created: function () {
-            // `this` points to the vm instance
             this.getAll();
         },
         methods: {
             getAll() {
-                // console.log('Blah Blah');
                 riskTypeService.getAll().then(riskTypes => {
                     this.riskTypes = riskTypes;
                 })
