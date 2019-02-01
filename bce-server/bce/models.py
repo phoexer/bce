@@ -5,6 +5,7 @@ class Risk(models.Model):
     name = models.CharField(max_length=100)
     data = models.CharField(max_length=102400)
 
+
 class RiskType(models.Model):
     name = models.CharField(max_length=100)
     label = models.CharField(max_length=100, blank=True, default='')
@@ -43,6 +44,7 @@ class FieldType(models.Model):
 
     class Meta:
         ordering = ('id',)
+
 
 class FieldOption(models.Model):
     choice = models.CharField(max_length=20)

@@ -11,11 +11,11 @@ import json
 from my_functions import login, listObjects, printeverything, createObject, getObject, deleteObject, updateObject
 
 payload = {
-            "username": 'michael',
-            "password": 'password123'
+            "username": 'admin',
+            "password": 'password'
 }
 
-token = login('michael','password123')
+token = login('admin','password')
 
 r = listObjects(token)
 printeverything(r)
