@@ -27,8 +27,7 @@ urlpatterns = [
     path('risks/<int:pk>/',
          views.RiskDetail.as_view(),
          name='risk-detail'),
-    # path('', views.index, name='index'),
-    # path(r'^.*', views.index, name='index'),
+    path('', views.ApiRoot.as_view(), name='index'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

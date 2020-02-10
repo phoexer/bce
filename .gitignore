@@ -10,4 +10,11 @@
 /bce-server/env
 node_modules/
 /bce-server/zappa_settings.json
-/bce-server/bceapp/settings.py
+/bce-server/static
+
+.DS_Store
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class

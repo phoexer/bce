@@ -14,22 +14,16 @@ from django.template import loader
 from django.http import HttpResponse
 
 
-# class ApiRoot(APIView):
-#     def get(self, request, format=None):
-#         return Response({
-#             'message': 'you found the api, now what?'
-#         })
-
-def index(request):
-    # template = loader.get_template('home.html')
-    # context = {}
-    # return HttpResponse(template.render(context, request))
-    return render(request, 'home.html')
+class ApiRoot(APIView):
+    permission_classes = (permissions.AllowAny,)
+    def get(self, request, format=None):
+        return Response({
+            'message': 'you found the api, now what?'
+        })
 
 
 class RiskTypeList(APIView):
     def get(self, request, formart=None):
-        # permission_classes = (permissions.IsAuthenticated, IsOwnerOrReadOnly)
         serializer = RiskTypeSerializer(RiskType.objects.all(), many=True)
         return Response(serializer.data)
 
@@ -42,7 +36,6 @@ class RiskTypeList(APIView):
         sp1 = transaction.savepoint()
         if serializer.is_valid():
             risk_type_inst = serializer.save(owner=self.request.user)
-#            print(risk_type_inst)
 
             for field_type in field_types:
                 field_options = field_type.pop('options')
