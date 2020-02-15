@@ -1,9 +1,5 @@
 <template>
     <div class="row justify-content-md-center">
-        <!--<div class="alert alert-info">-->
-            <!--Username: test<br />-->
-            <!--Password: test-->
-        <!--</div>-->
         <div class="col-md-4 col-sm-12">
             <h2>Login</h2>
             <form @submit.prevent="handleSubmit">
@@ -41,12 +37,11 @@
             }
         },
         created () {
-            // reset login status
             this.$store.dispatch('authentication/logout');
         },
         methods: {
             handleSubmit (e) {
-                // console.log(e.toString());
+                console.log(e.toString());
                 this.submitted = true;
                 const { username, password } = this;
                 const { dispatch } = this.$store;

@@ -18,12 +18,6 @@ import environ
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = environ.Path(__file__) - 3
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-# TODO This here is for dev, I need to make a separate one for Production
-# That gets keys etc from the environment
 SECRET_KEY = 'gwb2eo(g#=_wt2dylvarjoqlu0^xa67z4fy*j2n1jr8&fx^8(i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -34,9 +28,8 @@ ALLOWED_HOSTS = ['localhost','0.0.0.0', 'bce-server']
 
 
 # Application definition
-
 INSTALLED_APPS = [
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -45,10 +38,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'bce.apps.BceConfig',
-    # 'django_s3_storage',
     'corsheaders',
     'webpack_loader',
-    # 'core',
 ]
 
 MIDDLEWARE = [
@@ -97,19 +88,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'postgres',
-#         'USER': 'postgres',
-#         'HOST': 'bce-db',
-#         'PORT': 5432,
-#     }
-# }
-
-
-# Password validation
-# https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -146,12 +124,6 @@ USE_TZ = True
 PROJECT_DIR = ROOT_DIR.path("app")
 
 STATIC_ROOT = os.path.join(ROOT_DIR, "static")
-# os.path.join(BASE_DIR, 'static')
-# STATIC_ROOT =
-# '/static/'
-# os.path.join(BASE_DIR, "static/")
-# STATICFILES_DIRS = ("E:\\git\\bce\\bce-ui\\dist", )
-# STATICFILES_DIRS = (STATIC_ROOT, )
 
 # STATIC FILE CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -173,11 +145,6 @@ STATICFILES_FINDERS = (
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
-    # 'DEFAULT_AUTHENTICATION_CLASSES': (
-    #     'rest_framework.authentication.BasicAuthentication',
-    #     'rest_framework.authentication.SessionAuthentication',
-    #     'rest_framework.authentication.TokenAuthentication'
-    # )
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
@@ -191,28 +158,6 @@ REST_FRAMEWORK = {
     )
 }
 
-# YOUR_S3_BUCKET = ""
-
-# STATICFILES_STORAGE = "django_s3_storage.storage.StaticS3Storage"
-# AWS_S3_BUCKET_NAME_STATIC = YOUR_S3_BUCKET
-
-# These next two lines will serve the static files directly
-# from the s3 bucket
-# AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % YOUR_S3_BUCKET
-# STATIC_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
-
-# The AWS region to connect to.
-# AWS_REGION = "us-east-2"
-
-# The AWS access key to use.
-# AWS_ACCESS_KEY_ID = ""
-
-# The AWS secret access key to use.
-# AWS_SECRET_ACCESS_KEY = ""
-
-# OR...if you create a fancy custom domain for your static files use:
-# AWS_S3_PUBLIC_URL_STATIC = "https://bce.mmusangeya.com"
-
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:8080',
     'http://0.0.0.0:8080',
@@ -222,7 +167,6 @@ CORS_ORIGIN_WHITELIST = (
     'http://bce-ui:8080',
 )
 
-# CORS_ORIGIN_ALLOW_ALL = True
 
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=43200),

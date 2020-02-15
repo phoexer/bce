@@ -13,7 +13,6 @@ services:
         build:
             context: ./bce-server/
             dockerfile: Dockerfile
-        # hostname: bce-server
         networks:
             - bce-api-network
         command: python manage.py runserver 0.0.0.0:8000
@@ -21,32 +20,22 @@ services:
             - ./bce-server:/var/app
         ports:
             - "8000:8000"
-        # depends_on:
-        #     - bce-db
-
-    # Node.js web server
     bce-ui:
         build:
             context: ./bce-vue-ui/
             dockerfile: Dockerfile
-        # hostname: bce-ui
         networks:
             - bce-api-network
         command: yarn run serve
         volumes:
             - ./bce-vue-ui:/var/app
             - node_modules:/var/app/node_modules
-            # - ~/.ssh/:/root/.ssh/
         ports:
             - "8080:8080"
         links:
             - bce-server
-        # depends_on:
-        #     - bce-server
 volumes:
     node_modules:
 
 networks:
     bce-api-network:
-        # external:
-        #     name: bce-api-layer
