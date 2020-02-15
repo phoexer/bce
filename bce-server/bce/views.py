@@ -1,25 +1,19 @@
-from django.shortcuts import render
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from django.http import Http404
-from rest_framework import status
-from bce.models import RiskType, FieldType, FieldOption, Risk
-from rest_framework.parsers import JSONParser
-from rest_framework import generics
-from bce.serializers import RiskTypeSerializer, FieldTypeSerializer, FieldOptionSerializer, RiskSerializer
-from rest_framework import permissions
+from bce.models import FieldOption, FieldType, Risk, RiskType
 from bce.permissions import IsOwnerOrReadOnly
+from bce.serializers import FieldOptionSerializer, FieldTypeSerializer, RiskSerializer, RiskTypeSerializer
 from django.db import transaction
-from django.template import loader
-from django.http import HttpResponse
+from django.http import Http404
+from rest_framework import generics, permissions, status
+from rest_framework.parsers import JSONParser
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 
 class ApiRoot(APIView):
     permission_classes = (permissions.AllowAny,)
+
     def get(self, request, format=None):
-        return Response({
-            'message': 'you found the api, now what?'
-        })
+        return Response({"message": "you found the api, now what?"})
 
 
 class RiskTypeList(APIView):
@@ -29,7 +23,7 @@ class RiskTypeList(APIView):
 
     @transaction.atomic
     def post(self, request, format=None):
-        field_types = request.data.pop('fields')
+        field_types = request.data.pop("fields")
 
         serializer = RiskTypeSerializer(data=request.data)
 
@@ -38,16 +32,16 @@ class RiskTypeList(APIView):
             risk_type_inst = serializer.save(owner=self.request.user)
 
             for field_type in field_types:
-                field_options = field_type.pop('options')
+                field_options = field_type.pop("options")
 
-                field_type['risk_type'] = risk_type_inst.id
+                field_type["risk_type"] = risk_type_inst.id
                 ft_serializer = FieldTypeSerializer(data=field_type)
 
                 if ft_serializer.is_valid():
                     filed_type_inst = ft_serializer.save()
 
                     for field_option in field_options:
-                        field_option['field_type'] = filed_type_inst.id
+                        field_option["field_type"] = filed_type_inst.id
                         fo_serializer = FieldOptionSerializer(data=field_option)
                         if fo_serializer.is_valid():
                             fo_serializer.save()
@@ -94,7 +88,7 @@ class RiskTypeDetail(APIView):
         risk_type = self.get_risk_type(pk)
         data = JSONParser().parse(request)
 
-        field_types = data.pop('fields')
+        field_types = data.pop("fields")
 
         sp1 = transaction.savepoint()
 
@@ -103,7 +97,7 @@ class RiskTypeDetail(APIView):
             serializer.save()
 
             for field_type in field_types:
-                field_options = field_type.pop('options')
+                field_options = field_type.pop("options")
 
                 field_type_inst = self.get_field_type(field_type["id"])
                 ft_serializer = FieldTypeSerializer(field_type_inst, data=field_type)

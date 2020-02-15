@@ -7,3 +7,4 @@ django-cors-headers
 django-webpack-loader
 zappa
 django-environ==0.4.5
+pre-commit

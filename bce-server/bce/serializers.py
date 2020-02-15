@@ -1,18 +1,18 @@
-from rest_framework import serializers
-from bce.models import RiskType, FieldType, FieldOption, Risk
+from bce.models import FieldOption, FieldType, Risk, RiskType
 from django.contrib.auth.models import User
+from rest_framework import serializers
 
 
 class RiskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Risk
-        fields = ('id', 'name', 'data')
+        fields = ("id", "name", "data")
 
 
 class FieldOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = FieldOption
-        fields = ('id', 'field_type', 'choice', 'label')
+        fields = ("id", "field_type", "choice", "label")
 
 
 class FieldTypeSerializer(serializers.ModelSerializer):
@@ -20,7 +20,7 @@ class FieldTypeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = FieldType
-        fields = ('id', 'name', 'risk_type', 'label', 'tooltip', 'type', 'visible', 'hidden', 'required', 'options')
+        fields = ("id", "name", "risk_type", "label", "tooltip", "type", "visible", "hidden", "required", "options")
 
 
 class RiskTypeSerializer(serializers.ModelSerializer):
@@ -28,7 +28,7 @@ class RiskTypeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = RiskType
-        fields = ('id', 'name', 'label', 'description', 'tooltip', 'active', 'created', 'fields')
+        fields = ("id", "name", "label", "description", "tooltip", "active", "created", "fields")
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -36,4 +36,4 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'risk_types')
+        fields = ("id", "username", "risk_types")
