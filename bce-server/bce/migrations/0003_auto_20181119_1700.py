@@ -5,14 +5,6 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('bce', '0002_auto_20181119_1632'),
-    ]
+    dependencies = [("bce", "0002_auto_20181119_1632")]
 
-    operations = [
-        migrations.AlterField(
-            model_name='risk',
-            name='data',
-            field=models.CharField(max_length=20480),
-        ),
-    ]
+    operations = [migrations.AlterField(model_name="risk", name="data", field=models.CharField(max_length=20480))]

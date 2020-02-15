@@ -5,37 +5,37 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('bce', '0001_initial'),
-    ]
+    dependencies = [("bce", "0001_initial")]
 
     operations = [
         migrations.CreateModel(
-            name='Risk',
+            name="Risk",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('data', models.CharField(max_length=102400)),
+                ("id", models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("name", models.CharField(max_length=100)),
+                ("data", models.CharField(max_length=102400)),
             ],
         ),
+        migrations.AlterField(model_name="fieldtype", name="tooltip", field=models.TextField(blank=True)),
         migrations.AlterField(
-            model_name='fieldtype',
-            name='tooltip',
-            field=models.TextField(blank=True),
+            model_name="fieldtype",
+            name="type",
+            field=models.CharField(
+                choices=[
+                    ("TEXT", "Text Field"),
+                    ("TEXTAREA", "Text Area"),
+                    ("EMAIL", "Email Address"),
+                    ("DATE", "Date"),
+                    ("DATETIME", "Date and Time"),
+                    ("NUMBER", "Numbers"),
+                    ("CURRENCY", "Currency"),
+                    ("RADIO", "Radio Buttons"),
+                    ("DROPDOWN", "Dropdown Selection"),
+                ],
+                default="TEXT",
+                max_length=10,
+            ),
         ),
-        migrations.AlterField(
-            model_name='fieldtype',
-            name='type',
-            field=models.CharField(choices=[('TEXT', 'Text Field'), ('TEXTAREA', 'Text Area'), ('EMAIL', 'Email Address'), ('DATE', 'Date'), ('DATETIME', 'Date and Time'), ('NUMBER', 'Numbers'), ('CURRENCY', 'Currency'), ('RADIO', 'Radio Buttons'), ('DROPDOWN', 'Dropdown Selection')], default='TEXT', max_length=10),
-        ),
-        migrations.AlterField(
-            model_name='risktype',
-            name='description',
-            field=models.TextField(blank=True),
-        ),
-        migrations.AlterField(
-            model_name='risktype',
-            name='tooltip',
-            field=models.TextField(blank=True),
-        ),
+        migrations.AlterField(model_name="risktype", name="description", field=models.TextField(blank=True)),
+        migrations.AlterField(model_name="risktype", name="tooltip", field=models.TextField(blank=True)),
     ]

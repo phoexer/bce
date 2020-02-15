@@ -1,10 +1,10 @@
 from bce import views
-from django.contrib import admin
 from django.conf.urls import url
-from django.urls import path, include
-from django.views.generic.base import TemplateView
+from django.contrib import admin
+from django.urls import include, path
 
 urlpatterns = [
-    path('api/', include('bce.urls')),
-    path('', views.ApiRoot.as_view(), name='index'),
+    path("api/", include("bce.urls")),
+    url("admin/", admin.site.urls),
+    path("", views.ApiRoot.as_view(), name="index"),
 ]
