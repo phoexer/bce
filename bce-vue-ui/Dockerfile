@@ -6,4 +6,4 @@ COPY       package.json /var/app/package.json
 COPY       . /var/app/
 RUN        yarn install
 
-EXPOSE     8080
+EXPOSE     8081
