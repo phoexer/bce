@@ -5,6 +5,9 @@ class Risk(models.Model):
     name = models.CharField(max_length=100)
     data = models.CharField(max_length=102400)
 
+    def __str__(self):
+        return self.name
+
 
 class RiskType(models.Model):
     name = models.CharField(max_length=100)
