@@ -8,3 +8,5 @@ django-webpack-loader
 zappa
 django-environ==0.4.5
 pre-commit
+pytest
+pytest-django
