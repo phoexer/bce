@@ -33,12 +33,8 @@ an option in the requirement document.
 One thing led to another, and I now have the UI written in Vue.js as well. The link above leads 
 to the Vue.js version of the app.
 
-The old Angular app can be viewed using the link below
-
-*  [bce-ng.musangeya.com](https://bce-ng.musangeya.com)
-
-Both Apps are pretty much identical and access the same backend. The code for both is in the repository,
-i.e. [bce-vue-ui](bce-vue-ui) for the Vue.js app and [bce-angular-ui](bce-angular-ui) for the angular app.
+I removed the older angular app because It was no longer needed and was a hustle to maintain. So now we only have the Vue app. 
+The old code still lives if you roll back to (a89bc7b23fd819d096acde780843e3ee94278975)
 
 ## <a name="server"></a>Api
 The Api can be accessed  at
