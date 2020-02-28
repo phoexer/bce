@@ -21,6 +21,9 @@ class RiskType(models.Model):
     class Meta:
         ordering = ("name",)
 
+    def __str__(self):
+        return self.name
+
 
 class FieldType(models.Model):
     name = models.CharField(max_length=100)
@@ -48,6 +51,9 @@ class FieldType(models.Model):
     class Meta:
         ordering = ("id",)
 
+    def __str__(self):
+        return self.name
+
 
 class FieldOption(models.Model):
     choice = models.CharField(max_length=20)
@@ -56,3 +62,6 @@ class FieldOption(models.Model):
 
     class Meta:
         ordering = ("choice",)
+
+    def __str__(self):
+        return self.label
