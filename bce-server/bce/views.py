@@ -23,40 +23,43 @@ class RiskTypeList(APIView):
 
     @transaction.atomic
     def post(self, request, format=None):
-        field_types = request.data.pop("fields")
+        try:
+            field_types = request.data.pop("fields")
 
-        serializer = RiskTypeSerializer(data=request.data)
+            serializer = RiskTypeSerializer(data=request.data)
 
-        sp1 = transaction.savepoint()
-        if serializer.is_valid():
-            risk_type_inst = serializer.save(owner=self.request.user)
+            sp1 = transaction.savepoint()
+            if serializer.is_valid():
+                risk_type_inst = serializer.save(owner=self.request.user)
 
-            for field_type in field_types:
-                field_options = field_type.pop("options")
+                for field_type in field_types:
+                    field_options = field_type.pop("options")
 
-                field_type["risk_type"] = risk_type_inst.id
-                ft_serializer = FieldTypeSerializer(data=field_type)
+                    field_type["risk_type"] = risk_type_inst.id
+                    ft_serializer = FieldTypeSerializer(data=field_type)
 
-                if ft_serializer.is_valid():
-                    filed_type_inst = ft_serializer.save()
+                    if ft_serializer.is_valid():
+                        filed_type_inst = ft_serializer.save()
 
-                    for field_option in field_options:
-                        field_option["field_type"] = filed_type_inst.id
-                        fo_serializer = FieldOptionSerializer(data=field_option)
-                        if fo_serializer.is_valid():
-                            fo_serializer.save()
-                        else:
-                            transaction.savepoint_rollback(sp1)
-                            return Response(fo_serializer.data, status=status.HTTP_400_BAD_REQUEST)
-                else:
-                    transaction.savepoint_rollback(sp1)
-                    return Response(ft_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                        for field_option in field_options:
+                            field_option["field_type"] = filed_type_inst.id
+                            fo_serializer = FieldOptionSerializer(data=field_option)
+                            if fo_serializer.is_valid():
+                                fo_serializer.save()
+                            else:
+                                transaction.savepoint_rollback(sp1)
+                                return Response(fo_serializer.data, status=status.HTTP_400_BAD_REQUEST)
+                    else:
+                        transaction.savepoint_rollback(sp1)
+                        return Response(ft_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-            transaction.savepoint_commit(sp1)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            transaction.savepoint_rollback(sp1)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                transaction.savepoint_commit(sp1)
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            else:
+                transaction.savepoint_rollback(sp1)
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except KeyError:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 class RiskTypeDetail(APIView):

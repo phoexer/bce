@@ -20,6 +20,7 @@ class UserFactory(factory.DjangoModelFactory):
 class RiskTypeFactory(factory.DjangoModelFactory):
     class Meta:
         model = RiskType
+        django_get_or_create = ("name",)
 
     name = "vehicle_risk_type"
     owner = factory.SubFactory(UserFactory)

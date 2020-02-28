@@ -11,3 +11,4 @@ pre-commit
 pytest
 pytest-django
 factory-boy==2.11.1
+coverage

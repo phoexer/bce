@@ -17,6 +17,11 @@ test.server: # Run Server tests only
 test.ui: # Run UI tests only
 	docker-compose exec bce-ui yarn test
 
+coverage: # get server coverage
+	docker-compose exec bce-server coverage run -m pytest 
+	docker-compose exec bce-server coverage html
+	open bce-server/htmlcov/index.html
+
 #### Django 
 shell: # Access the Django Shell on the container
 	docker-compose exec bce-server python manage.py shell
