@@ -192,52 +192,52 @@
 </template>
 
 <script>
-import riskTypeService from "@/services/risktype.service";
-import { mapActions } from "vuex";
+import riskTypeService from '@/services/risktype.service'
+import { mapActions } from 'vuex'
 
 export default {
-  name: "RiskType",
+  name: 'RiskType',
   data() {
     return {
       riskType: null,
       model: {
         active: true,
-        fields: []
-      }
-    };
+        fields: [],
+      },
+    }
   },
   created: function() {
-    this.addField();
+    this.addField()
   },
   methods: {
-    ...mapActions(["success", "error", "clear"]),
+    ...mapActions(['success', 'error', 'clear']),
     removeField(index) {
-      this.model["fields"].splice(index, 1);
+      this.model['fields'].splice(index, 1)
     },
     addField() {
-      this.model["fields"].push({
-        name: "",
-        label: "",
-        type: "TEXT",
-        tooltip: "",
+      this.model['fields'].push({
+        name: '',
+        label: '',
+        type: 'TEXT',
+        tooltip: '',
         options: [],
-        required: false
-      });
+        required: false,
+      })
     },
     addOption(field) {
       field.options.push({
-        choice: "",
-        label: ""
-      });
+        choice: '',
+        label: '',
+      })
     },
     removeOption(field, index) {
-      field.options.splice(index, 1);
+      field.options.splice(index, 1)
     },
     changeType(field) {
-      if (field.type == "RADIO" || field.type == "DROPDOWN") {
-        this.addOption(field);
+      if (field.type == 'RADIO' || field.type == 'DROPDOWN') {
+        this.addOption(field)
       } else {
-        field.options = [];
+        field.options = []
       }
     },
     submit() {
@@ -245,28 +245,28 @@ export default {
         .createRiskType(this.model)
         .then(response => {
           response.text().then(text => {
-            this.res = JSON.parse(text);
+            this.res = JSON.parse(text)
             // redirect to home
             if (response.status == 200 || response.status == 201) {
               this.$store.dispatch(
-                "alert/success",
-                "A new Risk Type has been created with reference number: " +
+                'alert/success',
+                'A new Risk Type has been created with reference number: ' +
                   this.res.id
-              );
+              )
               this.$router.push({
-                path: "/"
-              });
+                path: '/',
+              })
             } else if (response.status == 400) {
               for (var msg in this.res) {
-                this.$store.dispatch("alert/error", msg + ": " + this.res[msg]);
+                this.$store.dispatch('alert/error', msg + ': ' + this.res[msg])
               }
             }
-          });
+          })
         })
         .catch(err => {
-          console.log(err);
-        });
-    }
-  }
-};
+          console.log(err)
+        })
+    },
+  },
+}
 </script>

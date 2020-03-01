@@ -17,7 +17,7 @@ def get_field_option(pk, raise_exception=False):
         return FieldOption.objects.get(pk=pk)
     except FieldOption.DoesNotExist:
         if raise_exception:
-            raise ValidationError("Field Option Does not exist.")
+            raise ValidationError("Field Option Does Not Exist.")
         return None
 
 
@@ -26,7 +26,7 @@ def get_field_type(pk, raise_exception=False):
         return FieldType.objects.get(pk=pk)
     except FieldType.DoesNotExist:
         if raise_exception:
-            raise ValidationError("Field Type Does not exist.")
+            raise ValidationError("Field Type Does Not Exist.")
         return None
 
 
@@ -35,5 +35,5 @@ def get_risk_type(pk, raise_exception=False):
         return RiskType.objects.get(pk=pk)
     except RiskType.DoesNotExist:
         if raise_exception:
-            raise ValidationError("Risk Type Does not exist.")
+            raise ValidationError("Risk Type Does Not Exist.")
         return None
