@@ -60,8 +60,7 @@ export default {
     this.$store.dispatch("authentication/logout");
   },
   methods: {
-    handleSubmit(e) {
-      console.log(e.toString());
+    handleSubmit() {
       this.submitted = true;
       const { username, password } = this;
       const { dispatch } = this.$store;

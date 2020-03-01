@@ -1,8 +1,8 @@
 {
   "name": "Auto-Insurance",
   "label": "Sample Label",
-  "description": "Risk Type for Auto Insurence",
-  "tooltip": "This Risk type is used for Car Insurance",
+  "description": "Risk Type for Auto Insurance.",
+  "tooltip": "Car Insurance Risk type.",
   "active": true,
   "fields": [
     {
@@ -66,11 +66,11 @@
       "options": [
         {
           "choice": "left",
-          "label": "Left Hand Drive"
+          "label": "Left-hand Drive"
         },
         {
           "choice": "right",
-          "label": "Right Hand Drive"
+          "label": "Right-hand Drive"
         }
       ]
     },

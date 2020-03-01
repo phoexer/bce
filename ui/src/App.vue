@@ -30,26 +30,11 @@ export default {
     }
   },
   watch: {
-    $route(to, from) {
-      // clear alert on location change
-      //console.log(to);
-      // console.log(from.toString());
+    $route(to) {
       if (to.name != "home") {
-        // Clear alerts only when not going home
         this.$store.dispatch("alert/clear");
       }
     }
   }
 };
 </script>
-
-<!--<template>-->
-<!--<div id="app">-->
-<!--<div id="nav">-->
-<!--<router-link to="/">Home</router-link>-->
-<!--|-->
-<!--<router-link to="/about">About</router-link>-->
-<!--</div>-->
-<!--<router-view/>-->
-<!--</div>-->
-<!--</template>-->
