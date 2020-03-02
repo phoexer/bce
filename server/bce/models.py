@@ -19,7 +19,7 @@ class RiskType(models.Model):
     owner = models.ForeignKey("auth.User", related_name="risk_types", on_delete=models.CASCADE)
 
     class Meta:
-        ordering = ("name",)
+        ordering = ("-created",)
 
     def __str__(self):
         return self.name

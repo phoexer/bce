@@ -194,18 +194,9 @@ export default {
           });
         })
         .catch(err => {
-          // console.log(err);
+          console.log(err);
         });
     }
   }
 };
 </script>
-
-<style scoped>
-/*.md-datepicker-dialog {*/
-/*height: 286px;*/
-/*}*/
-/*.md-datepicker-body-content {*/
-/*height: 232px !important;*/
-/*}*/
-</style>

@@ -51,7 +51,6 @@
           </label>
         </div>
 
-        <!--<section formArrayName="fields">-->
         <h3>Field</h3>
         <div class="row">
           <div
@@ -59,7 +58,6 @@
             v-for="(field, index) in model['fields']"
             v-bind:key="index"
           >
-            <!--<div formGroupName="{{i}}">-->
             <div class="form-group">
               <label>Name</label>
               <input
@@ -113,7 +111,6 @@
                   <th></th>
                 </tr>
                 <tr v-for="(option, i) in field.options" v-bind:key="i">
-                  <!--<ng-container formGroupName="{{j}}">-->
                   <td>
                     <input
                       class="form-control"
@@ -163,7 +160,6 @@
                 Required
               </label>
             </div>
-            <!--</div>-->
             <button
               class="btn btn-default"
               type="button"
@@ -182,7 +178,6 @@
         >
           Add Field
         </button>
-        <!--</section>-->
 
         <div>
           <hr />
@@ -268,10 +263,10 @@ export default {
             }
           });
         })
-        .catch(err => {});
+        .catch(err => {
+          console.log(err);
+        });
     }
   }
 };
 </script>
-
-<style scoped></style>

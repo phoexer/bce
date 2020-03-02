@@ -25,7 +25,7 @@ SECRET_KEY = "gwb2eo(g#=_wt2dylvarjoqlu0^xa67z4fy*j2n1jr8&fx^8(i"
 DEBUG = True
 ADMIN_ENABLED = False
 
-ALLOWED_HOSTS = ["localhost", "0.0.0.0"]  # , "bce-server"]
+ALLOWED_HOSTS = ["localhost", "0.0.0.0"]
 
 
 # Application definition
@@ -152,10 +152,7 @@ CORS_ORIGIN_WHITELIST = (
     "http://0.0.0.0:8080",
     "http://localhost",
     "http://0.0.0.0",
-    # "http://bce-ui",
-    # "http://bce-ui:8080",
 )
-
 
 JWT_AUTH = {"JWT_EXPIRATION_DELTA": datetime.timedelta(seconds=43200)}
 

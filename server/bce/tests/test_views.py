@@ -42,9 +42,11 @@ class TestRiskTypeListAPIView:
         new_risk_types = response.data
         assert response.status_code == status.HTTP_200_OK
         assert len(new_risk_types) == 3
-        assert new_risk_types[0]["name"] == "vehicle_risk_type1"
+
+        # RiskTypes are returned in descending order
+        assert new_risk_types[0]["name"] == "vehicle_risk_type3"
         assert new_risk_types[1]["name"] == "vehicle_risk_type2"
-        assert new_risk_types[2]["name"] == "vehicle_risk_type3"
+        assert new_risk_types[2]["name"] == "vehicle_risk_type1"
 
     def test_list_risk_types_without_authentication(self):
         RiskTypeFactory(name="vehicle_risk_type1", owner=self.user)
@@ -74,12 +76,17 @@ class TestRiskTypeListAPIView:
 
         data1 = load_file("risktype_l3_err1.json")
         data2 = load_file("risktype_l3_err2.json")
+        data3 = load_file("risktype_l3_err3.json")
 
         response = self._send_create_request(payload=data1)
         assert response.status_code == status.HTTP_400_BAD_REQUEST
         assert RiskType.objects.count() == risk_type_count
 
         response = self._send_create_request(payload=data2)
+        assert response.status_code == status.HTTP_400_BAD_REQUEST
+        assert RiskType.objects.count() == risk_type_count
+
+        response = self._send_create_request(payload=data3)
         assert response.status_code == status.HTTP_400_BAD_REQUEST
         assert RiskType.objects.count() == risk_type_count
 

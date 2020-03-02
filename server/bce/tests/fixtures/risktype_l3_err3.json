@@ -65,35 +65,12 @@
       "required": true,
       "options": [
         {
-          "choice": "left",
+          "choice": "",
           "label": "Left-hand Drive"
         },
         {
-          "choice": "right",
+          "choice": "",
           "label": "Right-hand Drive"
-        }
-      ]
-    },
-    {
-      "name": "",
-      "label": "",
-      "tooltip": "",
-      "type": "DROPDOWN",
-      "visible": true,
-      "hidden": false,
-      "required": true,
-      "options": [
-        {
-          "choice": "sedan",
-          "label": "Sedan"
-        },
-        {
-          "choice": "coupe",
-          "label": "Coupe"
-        },
-        {
-          "choice": "suv",
-          "label": "SUV"
         }
       ]
     }
