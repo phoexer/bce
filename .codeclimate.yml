@@ -1,0 +1,12 @@
+version: '2'
+checks:
+  complex-logic:
+    config:
+      threshold: 8
+  method-complexity:
+    config:
+      threshold: 8
+exclude_patterns:
+  - '**/htmlcov/'
+  - '**/node_modules/'
+  - '**/vendor/'
