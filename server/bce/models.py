@@ -1,5 +1,7 @@
 from django.db import models
 
+from .constants import DEFAULT_FIELD_TYPES, FIELD_TYPE_TEXT
+
 
 class Risk(models.Model):
     name = models.CharField(max_length=100)
@@ -30,20 +32,7 @@ class FieldType(models.Model):
     risk_type = models.ForeignKey("RiskType", related_name="fields", on_delete=models.CASCADE)
     label = models.CharField(max_length=100, blank=True, default="")
     tooltip = models.TextField(blank=True)
-
-    FIELD_TYPES = (
-        ("TEXT", "Text Field"),
-        ("TEXTAREA", "Text Area"),
-        ("EMAIL", "Email Address"),
-        ("DATE", "Date"),
-        ("DATETIME", "Date and Time"),
-        ("NUMBER", "Numbers"),
-        ("CURRENCY", "Currency"),
-        ("RADIO", "Radio Buttons"),
-        ("DROPDOWN", "Dropdown Selection"),
-    )
-    type = models.CharField(max_length=10, choices=FIELD_TYPES, default="TEXT")
-
+    type = models.CharField(max_length=10, choices=DEFAULT_FIELD_TYPES, default=FIELD_TYPE_TEXT)
     visible = models.BooleanField(default=True, blank=True)
     hidden = models.BooleanField(default=False, blank=True)
     required = models.BooleanField(default=False, blank=True)
