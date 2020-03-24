@@ -11,7 +11,7 @@ The app itself is live and can be accessed from the urls in the tl;dr
 2. Links to the live app are [Listed Here](#ui)
 3. Model file can be [found here](server/bce/models.py)
 4. The entity diagram can be [found here](doc/Entities.png), and [here](#entities)
-5. Backend Api link can is [shown here](#server)
+5. Backend Api link is [shown here](#server)
 6. Can be checked [here](bce-server/bce/views.py)
 7. Live UI app is linked [here](#ui) along with the details to log in and test
 8. Same as above
@@ -22,7 +22,7 @@ The app itself is live and can be accessed from the urls in the tl;dr
 
 ## <a name="ui"></a>UI
 
-The following link points to the app's frontend. The frontend is hosted on my one of my linodes and
+The following link points to the app's frontend. The frontend is hosted on one of my linodes and
 accesses the backend server which runs on Amazon Lambda.
 
 - [bce.musangeya.com](https://bce.musangeya.com)
@@ -60,17 +60,17 @@ which you will use for all other communication.
 
 #### Endpoints
 
-| Endpoint        | Description                                     |
-| --------------- | ----------------------------------------------- |
-| api-token-auth/ | Authentication Endpoint, get your tokens here   |
-| risk-types/     | Create, Read, Update and Delete RiskTypes here. |
-| risks/          | Create, Read, Update and Delete Risks here.     |
+| Endpoint        | Description                                                             |
+| --------------- | ----------------------------------------------------------------------- |
+| api-token-auth/ | Authentication Endpoint, Post to this endpoint to get the access token. |
+| risk-types/     | Create, Read, Update and Delete RiskTypes endpoint.                     |
+| risks/          | Create, Read, Update and Delete Risks here.                             |
 
 ## Data Level Overview
 
-Requirement is to create a solution that allow insurers to create their own data models for their risks.
+Requirement is to create a solution that allows insurers to create their own data models for their risks.
 I tackled this by creating three models, RiskType,FieldType and FieldOption.
-These three allows users to define their own Risk data models and forms.
+These three allow users to define their own Risk data models and forms.
 
 ### RiskType
 
@@ -83,9 +83,9 @@ will appear on the form and a description. Each RiskType can have multiple Field
 | ----------- | --------------------------------------------------------------------- |
 | Name        | A name to identify an instance of RiskType                            |
 | Label       | A Label that will be displayed on the Risk Data Model                 |
-| Description | Description or noted about the RiskType                               |
+| Description | Description or note about the RiskType                                |
 | Tooltip     | Helpful Information that is displayed when you mouse over a component |
-| Active      | Flag that determines is the RiskType is active or not                 |
+| Active      | Flag that determines if the RiskType is active or not                 |
 | fields      | A list of fieldTypes attached to this RiskType                        |
 | Created     | Date Created                                                          |
 | Owner       | Owner of the RiskType                                                 |
@@ -172,7 +172,7 @@ The back end runs on Amazon AWS lambda, to deploy:
    6. AWS_SECRET_ACCESS_KEY
    7. CORS_ORIGIN_WHITELIST
 
-7. Once you are done you should be ready to deploy ad create a default user
+7. Once you are done you should be ready to deploy and create a default user
    ```
        zappa deploy
        zappa migrate
