@@ -1,8 +1,9 @@
 import json
 import os
 
-from bce.models import FieldOption, FieldType, RiskType
 from rest_framework.exceptions import ValidationError
+
+from .models import FieldOption, FieldType, RiskType
 
 dirname = os.path.dirname(__file__)
 
@@ -12,28 +13,22 @@ def load_file(file_name, subdirectory="tests/fixtures"):
         return json.loads(data_file.read())
 
 
-def get_field_option(pk, raise_exception=False):
+def get_object(cls, pk, raise_exception):
     try:
-        return FieldOption.objects.get(pk=pk)
-    except FieldOption.DoesNotExist:
+        return cls.objects.get(pk=pk)
+    except cls.DoesNotExist:
         if raise_exception:
-            raise ValidationError("Field Option Does not exist.")
+            raise ValidationError(f"{cls.__name__} Does not exist.")
         return None
+
+
+def get_field_option(pk, raise_exception=False):
+    return get_object(FieldOption, pk, raise_exception)
 
 
 def get_field_type(pk, raise_exception=False):
-    try:
-        return FieldType.objects.get(pk=pk)
-    except FieldType.DoesNotExist:
-        if raise_exception:
-            raise ValidationError("Field Type Does not exist.")
-        return None
+    return get_object(FieldType, pk, raise_exception)
 
 
 def get_risk_type(pk, raise_exception=False):
-    try:
-        return RiskType.objects.get(pk=pk)
-    except RiskType.DoesNotExist:
-        if raise_exception:
-            raise ValidationError("Risk Type Does not exist.")
-        return None
+    return get_object(RiskType, pk, raise_exception)
